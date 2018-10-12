@@ -10,6 +10,8 @@ public class SceneController : MonoBehaviour
     public const float offsetY = 2.5f;
     [SerializeField] private MemoryCard originalCard;
     [SerializeField] private Sprite[] images;
+    private MemoryCard _firstRevealed;
+    private MemoryCard _secondRevealed;
 
     // Use this for initialization
     void Start()
@@ -55,5 +57,18 @@ public class SceneController : MonoBehaviour
             newArray[r] = tmp;
         }
         return newArray;
+    }
+
+    public bool canReveal {
+        get { return _secondRevealed == null; }
+    }
+
+    public void CardRevealed(MemoryCard card) {
+        if (_firstRevealed == null) {
+            _firstRevealed = card;
+        } else {
+            _secondRevealed = card;
+            Debug.Log("Match? " + (_firstRevealed.id == _secondRevealed.id));
+        }
     }
 }

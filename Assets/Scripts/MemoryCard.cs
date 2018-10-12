@@ -12,7 +12,12 @@ public class MemoryCard : MonoBehaviour {
     {
         if (cardBack.activeSelf) {
             cardBack.SetActive(false);
+            controller.CardRevealed(this);
         }
+    }
+
+    public void Unreveal() {
+        cardBack.SetActive(true);
     }
 
     public int id {
